@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# AP-1: run afni_proc.py for full FMRI processing (Example 1)
+# AP simple: run afni_proc.py for full FMRI processing (for initial QC)
 
 # Process a single subj+ses pair.
 
