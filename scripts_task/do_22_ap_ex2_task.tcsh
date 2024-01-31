@@ -127,6 +127,7 @@ afni_proc.py                                                                 \
     -subj_id                  ${subj}                                        \
     -blocks                   tshift align tlrc volreg mask blur scale       \
                               regress                                        \
+    -radial_correlate_blocks  tcat volreg regress                            \
     -copy_anat                ${anat_cp}                                     \
     -anat_has_skull           no                                             \
     -anat_follower            anat_w_skull anat ${anat_skull}                \
