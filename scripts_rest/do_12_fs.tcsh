@@ -63,7 +63,7 @@ set dset_anat_00  = ${sdir_anat}/${subj}_${ses}_mprage_run-1_T1w.nii.gz
 # control variables
 
 # check available N_threads and report what is being used
-set nthr_avail = `afni_system_check.py -disp_num_cpu'`
+set nthr_avail = `afni_system_check.py -disp_num_cpu`
 set nthr_using = `afni_check_omp`
 
 echo "++ INFO: Using ${nthr_using} of available ${nthr_avail} threads"
