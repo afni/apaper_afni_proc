@@ -4,7 +4,7 @@
 #  -> the Biowulf version
 
 # This script runs a corresponding do_*.tcsh script, for a given
-# subj+ses pair.
+# subj+ses pair. It also loops over many subjects (and sessions).
 
 # To execute:  
 #     tcsh RUN_SCRIPT_NAME
