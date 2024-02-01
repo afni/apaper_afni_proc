@@ -1,7 +1,5 @@
 #!/bin/tcsh
 
-# ***USING TEMPORARY FILES, SEE "*****" BELOW
-
 # PHYS: run physio_calc.py to get FMRI regressors from physio
 # (card+resp) data.
 
@@ -60,12 +58,8 @@ set lab_out  = PHYS
 
 # dataset inputs
 set task_label  = task-rest_run-1
-#set physio_card = ${sdir_func}/${subj}_${ses}_${task_label}_physio-ECG.txt
-#set physio_resp = ${sdir_func}/${subj}_${ses}_${task_label}_physio-Resp.txt
-# **** TEMPORARY FILES****
-set physio_card = ${sdir_func}/${subj}_${ses}_${task_label}_physio-ECG___tmp.txt
-set physio_resp = ${sdir_func}/${subj}_${ses}_${task_label}_physio-Resp___tmp.txt
-
+set physio_card = ${sdir_func}/${subj}_${ses}_${task_label}_physio-ECG.txt
+set physio_resp = ${sdir_func}/${subj}_${ses}_${task_label}_physio-Resp.txt
 
 set dset_epi_e2 = ${sdir_func}/${subj}_${ses}_${task_label}_echo-2_bold.nii.gz
 
@@ -105,12 +99,9 @@ set run_script = run_retrots.txt
 
 cat << EOF >! ${run_script}
 
-# 33 slices of 220 time points * 50 vals/s * 2.2 s/time_point
-# --> 24200 vals (220 TP * 110 vals/TP)
-
-wc ${physio_resp} ${physio_card}
-
 # make physio regressors.
+# the EPI dataset provides necessary info about TR, number of 
+#   time points, etc.
 
 # '-img_* ..' options are for making more convenient QC plots here
 
