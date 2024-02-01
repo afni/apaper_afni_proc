@@ -65,12 +65,7 @@ set task_label    = task-pamenc
 set epi_radix     = ${sdir_func}/${subj}  #_${ses}
 set dset_epi      = ( ${epi_radix}_${task_label}_bold.nii* )
 
-set anat_cp       = ( ${sdir_ssw}/anatSS.${subj}.nii* )
-set anat_skull    = ( ${sdir_ssw}/anatU.${subj}.nii* )
-
-set dsets_NL_warp = ( ${sdir_ssw}/anatQQ.${subj}.nii*         \
-                      ${sdir_ssw}/anatQQ.${subj}.aff12.1D     \
-                      ${sdir_ssw}/anatQQ.${subj}_WARP.nii*  )
+set dset_anat_00  = ( ${sdir_anat}/${subj}_*T1w.nii.gz )
 
 # control variables
 set nt_rm         = 0       # number of time points to remove at start
@@ -123,7 +118,7 @@ ap_run_simple_rest.tcsh                                                \
     -run_ap                                                            \
     -subjid    ${subj}                                                 \
     -nt_rm     ${nt_rm}                                                \
-    -anat      ${anat_skull}                                           \
+    -anat      ${dset_anat_00}                                         \
     -epi       ${dset_epi}                                             \
     -template  ${template}
 

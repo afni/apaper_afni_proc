@@ -66,31 +66,13 @@ set task_label    = task-rest_run-1
 
 set epi_radix     = ${sdir_func}/${subj}_${ses}
 set dset_epi_e2   = ( ${epi_radix}_${task_label}_echo-2_bold.nii* )
-set dsets_epi_me  = ( ${epi_radix}_${task_label}_echo-?_bold.nii* )
-set me_times      = ( 12.5 27.6 42.7 )
 
-set blip_radix    = ${sdir_func}/${subj}_${ses}_acq-blip
-set epi_forward   = "${blip_radix}_dir-match_run-1_bold.nii.gz[0]"
-set epi_reverse   = "${blip_radix}_dir-opp_run-1_bold.nii.gz[0]"
-
-set physio_radix  = ${sdir_physio}/${subj}_${ses}
-set physio_regs   = ${physio_radix}_${task_label}_physio.slibase.1D
-
-set anat_cp       = ( ${sdir_ssw}/anatSS.${subj}.nii* )
-set anat_skull    = ( ${sdir_ssw}/anatU.${subj}.nii* )
-
-set dsets_NL_warp = ( ${sdir_ssw}/anatQQ.${subj}.nii*         \
-                      ${sdir_ssw}/anatQQ.${subj}.aff12.1D     \
-                      ${sdir_ssw}/anatQQ.${subj}_WARP.nii*  )
-
-set roi_all_2009  = ${sdir_suma}/aparc.a2009s+aseg_REN_all.nii.gz
-set roi_FSvent    = ${sdir_suma}/fs_ap_latvent.nii.gz
-set roi_FSWe      = ${sdir_suma}/fs_ap_wm.nii.gz
+set dset_anat_00  = ${sdir_anat}/${subj}_${ses}_mprage_run-1_T1w.nii.gz
 
 # control variables
 set nt_rm         = 4       # number of time points to remove at start
 #set blur_size     = 6       # blur size to apply 
-set final_dxyz    = 3       # final voxel size (isotropic dim)
+#set final_dxyz    = 3       # final voxel size (isotropic dim)
 #set cen_motion    = 0.2     # censor threshold for motion (enorm) 
 #set cen_outliers  = 0.05    # censor threshold for outlier frac
 
@@ -138,7 +120,7 @@ ap_run_simple_rest.tcsh                                                \
     -run_ap                                                            \
     -subjid    ${subj}                                                 \
     -nt_rm     ${nt_rm}                                                \
-    -anat      ${anat_skull}                                           \
+    -anat      ${dset_anat_00}                                         \
     -epi       ${dset_epi_e2}                                          \
     -template  ${template}
 
