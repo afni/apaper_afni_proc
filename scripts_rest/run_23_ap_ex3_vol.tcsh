@@ -12,7 +12,7 @@
 # --------------------------------------------------------------------------
 
 # specify script to execute
-set cmd           = 23_ap_ex3_roi
+set cmd           = 23_ap_ex3_vol
 
 # upper directories
 set dir_scr       = $PWD

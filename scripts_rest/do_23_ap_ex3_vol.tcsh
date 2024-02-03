@@ -25,7 +25,7 @@ set ecode = 0
 # labels
 set subj           = $1
 set ses            = $2
-set ap_label       = 23_ap_ex3_roi
+set ap_label       = 23_ap_ex3_vol
 
 
 # upper directories
@@ -91,7 +91,7 @@ set roi_FSWe      = ${sdir_suma}/fs_ap_wm.nii.gz
 
 # control variables
 set nt_rm         = 4        # number of time points to remove at start
-#set blur_size     = 6        # blur size to apply
+set blur_size     = 6        # blur size to apply (1.5-2x vox dim)
 set final_dxyz    = 3        # final voxel size (isotropic dim)
 set cen_motion    = 0.2      # censor threshold for motion (enorm)
 set cen_outliers  = 0.05     # censor threshold for outlier frac
@@ -134,7 +134,7 @@ cat << EOF >! ${run_script}
 # AP, Example 3: for ROI-based analysis
 #
 # single echo FMRI
-# no blur: ROI-based, volumetric
+# volumetric, voxelwise analysis, warped to standard space
 # use fanaticor with WMe and PC ventricles (both from FS)
 # include physio regressors
 # include follower GM-ROIs from FS (both 2000 and 2009 parc)
@@ -143,8 +143,8 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                \
     -subj_id                  ${subj}                                       \
-    -blocks                   ricor tshift align tlrc volreg mask scale     \
-                              regress                                       \
+    -blocks                   ricor tshift align tlrc volreg mask blur      \
+                              scale regress                                 \
     -radial_correlate_blocks  tcat volreg regress                           \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
@@ -176,6 +176,7 @@ afni_proc.py                                                                \
     -volreg_warp_dxyz         ${final_dxyz}                                 \
     -volreg_compute_tsnr      yes                                           \
     -mask_epi_anat            yes                                           \
+    -blur_size                ${blur_size}                                  \
     -regress_motion_per_run                                                 \
     -regress_ROI_PC           FSvent 3                                      \
     -regress_ROI_PC_per_run   FSvent                                        \
