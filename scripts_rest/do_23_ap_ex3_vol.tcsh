@@ -91,7 +91,7 @@ set roi_FSWe      = ${sdir_suma}/fs_ap_wm.nii.gz
 
 # control variables
 set nt_rm         = 4        # number of time points to remove at start
-set blur_size     = 6        # blur size to apply (1.5-2x vox dim)
+set blur_size     = 8        # blur size, here *to* FWHM, so appears large
 set final_dxyz    = 3        # final voxel size (isotropic dim)
 set cen_motion    = 0.2      # censor threshold for motion (enorm)
 set cen_outliers  = 0.05     # censor threshold for outlier frac
@@ -175,6 +175,7 @@ afni_proc.py                                                                \
     -volreg_compute_tsnr      yes                                           \
     -mask_epi_anat            yes                                           \
     -blur_size                ${blur_size}                                  \
+    -blur_to_fwhm                                                           \
     -regress_motion_per_run                                                 \
     -regress_ROI_PC           FSvent 3                                      \
     -regress_ROI_PC_per_run   FSvent                                        \
