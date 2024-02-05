@@ -134,7 +134,6 @@ afni_proc.py                                                                 \
     -dsets                    ${dset_epi}                                    \
     -tcat_remove_first_trs    0                                              \
     -tshift_opts_ts           -tpattern alt+z2                               \
-    -radial_correlate_blocks  tcat volreg                                    \
     -align_unifize_epi        local                                          \
     -align_opts_aea           -giant_move                                    \
                               -cost lpc+ZZ                                   \
