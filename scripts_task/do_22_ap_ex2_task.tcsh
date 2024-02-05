@@ -135,9 +135,7 @@ afni_proc.py                                                                 \
     -tcat_remove_first_trs    0                                              \
     -tshift_opts_ts           -tpattern alt+z2                               \
     -align_unifize_epi        local                                          \
-    -align_opts_aea           -giant_move                                    \
-                              -cost lpc+ZZ                                   \
-                              -check_flip                                    \
+    -align_opts_aea           -giant_move -cost lpc+ZZ -check_flip           \
     -tlrc_base                ${template}                                    \
     -tlrc_NL_warp                                                            \
     -tlrc_NL_warped_dsets     ${dsets_NL_warp}                               \

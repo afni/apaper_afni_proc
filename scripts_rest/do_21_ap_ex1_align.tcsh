@@ -146,9 +146,7 @@ afni_proc.py                                                                \
     -blip_reverse_dset        "${epi_reverse}"                              \
     -tcat_remove_first_trs    ${nt_rm}                                      \
     -align_unifize_epi        local                                         \
-    -align_opts_aea           -cost lpc+ZZ                                  \
-                              -giant_move                                   \
-                              -check_flip                                   \
+    -align_opts_aea           -cost lpc+ZZ -giant_move -check_flip          \
     -tlrc_base                ${template}                                   \
     -tlrc_NL_warp                                                           \
     -tlrc_NL_warped_dsets     ${dsets_NL_warp}                              \
