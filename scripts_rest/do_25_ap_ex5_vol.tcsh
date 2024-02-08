@@ -1,6 +1,7 @@
 #!/bin/tcsh
 
-# AP-3: run afni_proc.py for full FMRI processing (Example 3)
+# AP-5: run afni_proc.py for full FMRI processing (Example 5)
+#       -> starts from Ex. 3, but adds ANATICOR and ventricle PC regressors
 
 # Process a single subj+ses pair.
 
@@ -25,7 +26,7 @@ set ecode = 0
 # labels
 set subj           = $1
 set ses            = $2
-set ap_label       = 23_ap_ex3_vol
+set ap_label       = 25_ap_ex5_vol
 
 
 # upper directories
@@ -131,7 +132,8 @@ set run_script = ap.cmd.${subj}
 
 cat << EOF >! ${run_script}
 
-# AP, Example 3: for voxelwise analysis
+# AP, Example 5: for voxelwise analysis
+# NB: based on Ex. 3, but with more regressors (prob. not generally necessary)
 #
 # single echo FMRI
 # volumetric, voxelwise analysis, warped to standard space
@@ -149,8 +151,15 @@ afni_proc.py                                                                \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
     -anat_follower            anat_w_skull anat ${anat_skull}               \
+    -anat_follower_ROI        aaseg  anat ${roi_all_2009}                   \
+    -anat_follower_ROI        aeseg  epi  ${roi_all_2009}                   \
     -anat_follower_ROI        aagm09 anat ${roi_gmr_2009}                   \
     -anat_follower_ROI        aegm09 epi  ${roi_gmr_2009}                   \
+    -anat_follower_ROI        aagm00 anat ${roi_gmr_2000}                   \
+    -anat_follower_ROI        aegm00 epi  ${roi_gmr_2000}                   \
+    -anat_follower_ROI        FSvent epi  ${roi_FSvent}                     \
+    -anat_follower_ROI        FSWe   epi  ${roi_FSWe}                       \
+    -anat_follower_erode      FSvent FSWe                                   \
     -dsets                    ${dset_epi_e2}                                \
     -tcat_remove_first_trs    ${nt_rm}                                      \
     -ricor_regs               ${physio_regs}                                \
@@ -170,7 +179,11 @@ afni_proc.py                                                                \
     -blur_size                ${blur_size}                                  \
     -blur_to_fwhm                                                           \
     -regress_motion_per_run                                                 \
-    -regress_make_corr_vols   aegm09                                        \
+    -regress_ROI_PC           FSvent 3                                      \
+    -regress_ROI_PC_per_run   FSvent                                        \
+    -regress_make_corr_vols   aeseg FSvent                                  \
+    -regress_anaticor_fast                                                  \
+    -regress_anaticor_label   FSWe                                          \
     -regress_censor_motion    ${cen_motion}                                 \
     -regress_censor_outliers  ${cen_outliers}                               \
     -regress_apply_mot_types  demean deriv                                  \
