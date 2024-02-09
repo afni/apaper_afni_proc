@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# SSW: run @SSwarper to skullstrip (SS) and estimate a nonlinear warp.                                                 
+# SSW: run sswarper2 to skullstrip (SS) and estimate a nonlinear warp.
 
 # Process a single subj+ses pair.
 
@@ -85,11 +85,10 @@ endif
 # run programs
 # ---------------------------------------------------------------------------
 
-time @SSwarper                                                        \
+time ${dir_inroot}/scripts/sswarper2                                  \
     -base           "${template}"                                     \
     -subid          "${subj}"                                         \
     -input          "${dset_anat_00}"                                 \
-    -cost_nl_final  lpa                                               \
     -odir           "${sdir_out}"
 
 if ( ${status} ) then

@@ -9,7 +9,7 @@
 # ----------------------------- biowulf-cmd ---------------------------------
 # load modules
 source /etc/profile.d/modules.csh
-module load afni
+module load afni tedana
 
 # set N_threads for OpenMP
 setenv OMP_NUM_THREADS $SLURM_CPUS_ON_NODE

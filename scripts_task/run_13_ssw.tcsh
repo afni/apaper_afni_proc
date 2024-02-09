@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# SSW: run @SSwarper to skullstrip (SS) and estimate a nonlinear warp.
+# SSW: run sswarper2 to skullstrip (SS) and estimate a nonlinear warp.
 #  -> the Biowulf version
 
 # This script runs a corresponding do_*.tcsh script, for a given
