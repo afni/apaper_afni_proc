@@ -135,9 +135,8 @@ cat << EOF >! ${run_script}
 #
 # single echo FMRI
 # volumetric, voxelwise analysis, warped to standard space
-# use fanaticor with WMe and PC ventricles (both from FS)
 # include physio regressors
-# include follower GM-ROIs from FS (both 2000 and 2009 parc)
+# include follower GM-ROIs from FS 2009 parc
 
 # we do NOT include bandpassing here (see comments in text)
 
