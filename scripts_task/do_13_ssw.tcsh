@@ -83,7 +83,7 @@ endif
 # run programs
 # ---------------------------------------------------------------------------
 
-time ${dir_inroot}/scripts/sswarper2                                  \
+time sswarper2                                                        \
     -base           "${template}"                                     \
     -subid          "${subj}"                                         \
     -input          "${dset_anat_00}"                                 \
