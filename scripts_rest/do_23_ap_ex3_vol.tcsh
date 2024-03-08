@@ -65,7 +65,7 @@ setenv AFNI_COMPRESSOR GZIP
 set task_label    = task-rest_run-1
 
 set epi_radix     = ${sdir_func}/${subj}_${ses}
-set dset_epi_e2   = ( ${epi_radix}_${task_label}_echo-2_bold.nii* )
+set dset_epi      = ( ${epi_radix}_${task_label}_echo-2_bold.nii* ) # 2nd echo
 set dsets_epi_me  = ( ${epi_radix}_${task_label}_echo-?_bold.nii* )
 set me_times      = ( 12.5 27.6 42.7 )
 
@@ -142,15 +142,15 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                \
     -subj_id                  ${subj}                                       \
-    -blocks                   ricor tshift align tlrc volreg mask blur      \
-                              scale regress                                 \
-    -radial_correlate_blocks  tcat volreg regress                           \
+    -dsets                    ${dset_epi}                                   \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
     -anat_follower            anat_w_skull anat ${anat_skull}               \
     -anat_follower_ROI        aagm09 anat ${roi_gmr_2009}                   \
     -anat_follower_ROI        aegm09 epi  ${roi_gmr_2009}                   \
-    -dsets                    ${dset_epi_e2}                                \
+    -blocks                   ricor tshift align tlrc volreg mask blur      \
+                              scale regress                                 \
+    -radial_correlate_blocks  tcat volreg regress                           \
     -tcat_remove_first_trs    ${nt_rm}                                      \
     -ricor_regs               ${physio_regs}                                \
     -ricor_regs_nfirst        ${nt_rm}                                      \

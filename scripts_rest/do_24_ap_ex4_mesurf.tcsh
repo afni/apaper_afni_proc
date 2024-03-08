@@ -144,9 +144,8 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                \
     -subj_id                  ${subj}                                       \
-    -blocks                   tshift align volreg mask combine surf blur    \
-                              scale regress                                 \
-    -radial_correlate_blocks  tcat volreg                                   \
+    -dsets_me_run             ${dsets_epi_me}                               \
+    -echo_times               ${me_times}                                   \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
     -anat_follower            anat_w_skull anat ${anat_skull}               \
@@ -154,23 +153,24 @@ afni_proc.py                                                                \
     -anat_follower_ROI        aeseg  epi  ${roi_all_2009}                   \
     -anat_follower_ROI        FSvent epi  ${roi_FSvent}                     \
     -anat_follower_erode      FSvent                                        \
-    -surf_anat                ${suma_sv}                                    \
-    -surf_spec                ${suma_specs}                                 \
+    -blocks                   tshift align volreg mask combine surf blur    \
+                              scale regress                                 \
+    -radial_correlate_blocks  tcat volreg                                   \
+    -tcat_remove_first_trs    ${nt_rm}                                      \
     -blip_forward_dset        "${epi_forward}"                              \
     -blip_reverse_dset        "${epi_reverse}"                              \
-    -dsets_me_run             ${dsets_epi_me}                               \
-    -echo_times               ${me_times}                                   \
-    -combine_method           m_tedana                                      \
-    -tcat_remove_first_trs    ${nt_rm}                                      \
-    -tshift_interp             -wsinc9                                      \
+    -tshift_interp            -wsinc9                                       \
     -align_unifize_epi        local                                         \
     -align_opts_aea           -cost lpc+ZZ -giant_move -check_flip          \
     -volreg_align_to          MIN_OUTLIER                                   \
     -volreg_align_e2a                                                       \
     -volreg_warp_final_interp wsinc5                                        \
     -volreg_compute_tsnr      yes                                           \
-    -blur_size                ${blur_size}                                  \
     -mask_epi_anat            yes                                           \
+    -combine_method           m_tedana                                      \
+    -surf_anat                ${suma_sv}                                    \
+    -surf_spec                ${suma_specs}                                 \
+    -blur_size                ${blur_size}                                  \
     -regress_motion_per_run                                                 \
     -regress_make_corr_vols   aeseg FSvent                                  \
     -regress_censor_motion    ${cen_motion}                                 \

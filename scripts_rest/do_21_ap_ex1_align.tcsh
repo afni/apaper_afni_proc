@@ -137,14 +137,14 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                \
     -subj_id                  ${subj}                                       \
-    -blocks                   align tlrc volreg regress                     \
+    -dsets                    ${dset_epi_e2}                                \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
     -anat_follower            anat_w_skull anat ${anat_skull}               \
-    -dsets                    ${dset_epi_e2}                                \
+    -blocks                   align tlrc volreg regress                     \
+    -tcat_remove_first_trs    ${nt_rm}                                      \
     -blip_forward_dset        "${epi_forward}"                              \
     -blip_reverse_dset        "${epi_reverse}"                              \
-    -tcat_remove_first_trs    ${nt_rm}                                      \
     -align_unifize_epi        local                                         \
     -align_opts_aea           -cost lpc+ZZ -giant_move -check_flip          \
     -tlrc_base                ${template}                                   \
