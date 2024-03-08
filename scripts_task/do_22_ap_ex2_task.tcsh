@@ -125,13 +125,13 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                 \
     -subj_id                  ${subj}                                        \
-    -blocks                   tshift align tlrc volreg mask blur scale       \
-                              regress                                        \
-    -radial_correlate_blocks  tcat volreg regress                            \
+    -dsets                    ${dset_epi}                                    \
     -copy_anat                ${anat_cp}                                     \
     -anat_has_skull           no                                             \
     -anat_follower            anat_w_skull anat ${anat_skull}                \
-    -dsets                    ${dset_epi}                                    \
+    -blocks                   tshift align tlrc volreg mask blur scale       \
+                              regress                                        \
+    -radial_correlate_blocks  tcat volreg regress                            \
     -tcat_remove_first_trs    0                                              \
     -tshift_opts_ts           -tpattern alt+z2                               \
     -align_unifize_epi        local                                          \
