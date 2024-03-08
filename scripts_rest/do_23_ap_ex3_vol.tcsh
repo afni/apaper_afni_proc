@@ -91,7 +91,7 @@ set roi_FSWe      = ${sdir_suma}/fs_ap_wm.nii.gz
 
 # control variables
 set nt_rm         = 4        # number of time points to remove at start
-set blur_size     = 4        # blur size in mm, to be applied as an added blur
+set blur_size     = 5        # blur size in mm, usually based of voxel size
 set final_dxyz    = 3        # final voxel size (isotropic dim)
 set cen_motion    = 0.2      # censor threshold for motion (enorm)
 set cen_outliers  = 0.05     # censor threshold for outlier frac
