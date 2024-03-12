@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# AP-5: run afni_proc.py for full FMRI processing (Example 5)
+# AP-6: run afni_proc.py for full FMRI processing (Example 6)
 #       -> starts from Ex. 3, but adds ANATICOR and ventricle PC regressors
 
 # Process a single subj+ses pair.
@@ -26,7 +26,7 @@ set ecode = 0
 # labels
 set subj           = $1
 set ses            = $2
-set ap_label       = 25_ap_ex5_vol
+set ap_label       = 31_ap_ex6_vol
 
 
 # upper directories
@@ -132,7 +132,7 @@ set run_script = ap.cmd.${subj}
 
 cat << EOF >! ${run_script}
 
-# AP, Example 5: for voxelwise analysis
+# AP, Example 6: for voxelwise analysis
 # NB: based on Ex. 3, but with more regressors (prob. not generally necessary)
 #
 # single echo FMRI

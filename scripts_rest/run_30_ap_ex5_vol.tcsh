@@ -12,7 +12,7 @@
 # --------------------------------------------------------------------------
 
 # specify script to execute
-set cmd           = 25_ap_ex5_vol
+set cmd           = 30_ap_ex5_vol
 
 # upper directories
 set dir_scr       = $PWD
