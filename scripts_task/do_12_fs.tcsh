@@ -71,7 +71,7 @@ echo "++ INFO: Using ${nthr_using} of available ${nthr_avail} threads"
 if ( -d /lscratch/$SLURM_JOBID ) then
     set usetemp  = 1
     set sdir_BW  = ${sdir_out}
-    set sdir_out = /lscratch/$SLURM_JOBID/${subj}_${ses}
+    set sdir_out = /lscratch/$SLURM_JOBID/${subj}  #_${ses}
 
     # prep for group permission reset
     \mkdir -p ${sdir_BW}
