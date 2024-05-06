@@ -1,6 +1,7 @@
 #!/bin/tcsh
 
 # AP simple: run afni_proc.py for full FMRI processing (for initial QC)
+# -> run the ME-FMRI simple command here
 
 # Process a single subj+ses pair.
 
@@ -66,6 +67,8 @@ set task_label    = task-rest_run-1
 
 set epi_radix     = ${sdir_func}/${subj}_${ses}
 set dset_epi_e2   = ( ${epi_radix}_${task_label}_echo-2_bold.nii* )
+set dsets_epi_me  = ( ${epi_radix}_${task_label}_echo-?_bold.nii* )
+set me_times      = ( 12.5 27.6 42.7 )
 
 set dset_anat_00  = ${sdir_anat}/${subj}_${ses}_mprage_run-1_T1w.nii.gz
 
@@ -113,16 +116,17 @@ cat << EOF >! ${run_script}
 
 # AP, run simple
 #
-# single echo FMRI, simple processing for initial QC
+# multi-echo FMRI, simple processing for initial QC
 # anatomical has skull on
 
-ap_run_simple_rest.tcsh                                                \
+ap_run_simple_rest_me.tcsh                                             \
     -run_ap                                                            \
-    -subjid    ${subj}                                                 \
-    -nt_rm     ${nt_rm}                                                \
-    -anat      ${dset_anat_00}                                         \
-    -epi       ${dset_epi_e2}                                          \
-    -template  ${template}
+    -subjid      ${subj}                                               \
+    -nt_rm       ${nt_rm}                                              \
+    -anat        ${dset_anat_00}                                       \
+    -epi_me_run  ${dsets_epi_me}                                       \
+    -echo_times  ${me_times}                                           \
+    -template    ${template}
 
 EOF
 
