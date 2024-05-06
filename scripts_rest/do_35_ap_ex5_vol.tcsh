@@ -26,7 +26,7 @@ set ecode = 0
 # labels
 set subj           = $1
 set ses            = $2
-set ap_label       = 30_ap_ex5_vol
+set ap_label       = 35_ap_ex5_vol
 
 
 # upper directories

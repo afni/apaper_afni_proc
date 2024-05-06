@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# AP-6: run afni_proc.py for full FMRI processing (Example 6)
+# AP-5: run afni_proc.py for full FMRI processing (Example 5)
 #  -> the Biowulf version
 
 # This script runs a corresponding do_*.tcsh script for a given
@@ -12,7 +12,7 @@
 # --------------------------------------------------------------------------
 
 # specify script to execute
-set cmd           = 31_ap_ex6_vol
+set cmd           = 35_ap_ex5_vol
 
 # upper directories
 set dir_scr       = $PWD
