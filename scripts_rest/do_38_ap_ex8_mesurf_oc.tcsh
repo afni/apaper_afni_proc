@@ -141,6 +141,7 @@ cat << EOF >! ${run_script}
 # blip up/down (B0 distortion) correction applied
 # surface-based analysis
 # ME combine method: AFNI's OC
+# no masking required (on surf, and combine method doesn't require mask)
 # we do NOT include bandpassing here (see comments in text)
 
 afni_proc.py                                                                \
@@ -154,7 +155,7 @@ afni_proc.py                                                                \
     -anat_follower_ROI        aeseg  epi  ${roi_all_2009}                   \
     -anat_follower_ROI        FSvent epi  ${roi_FSvent}                     \
     -anat_follower_erode      FSvent                                        \
-    -blocks                   tshift align volreg mask combine surf blur    \
+    -blocks                   tshift align volreg combine surf blur         \
                               scale regress                                 \
     -radial_correlate_blocks  tcat volreg                                   \
     -tcat_remove_first_trs    ${nt_rm}                                      \
@@ -167,7 +168,6 @@ afni_proc.py                                                                \
     -volreg_align_e2a                                                       \
     -volreg_warp_final_interp wsinc5                                        \
     -volreg_compute_tsnr      yes                                           \
-    -mask_epi_anat            yes                                           \
     -combine_method           OC                                            \
     -surf_anat                ${suma_sv}                                    \
     -surf_spec                ${suma_specs}                                 \
