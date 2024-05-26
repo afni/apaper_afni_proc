@@ -62,7 +62,8 @@ set lab_out  = AP
 setenv AFNI_COMPRESSOR GZIP
 
 # dataset inputs
-set task_label    = task-pamenc
+set taskname      = pamenc
+set task_label    = task-${taskname}
 
 set epi_radix     = ${sdir_func}/${subj}  #_${ses}
 set dset_epi      = ( ${epi_radix}_${task_label}_bold.nii* )
@@ -129,7 +130,7 @@ cat << EOF >! ${run_script}
 
 afni_proc.py                                                                 \
     -subj_id                  ${subj}                                        \
-    -uvar                     pamenc                                         \
+    -uvar                     taskname ${taskname}                           \
     -dsets                    ${dset_epi}                                    \
     -copy_anat                ${anat_cp}                                     \
     -anat_has_skull           no                                             \
