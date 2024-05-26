@@ -2,6 +2,7 @@
 
 # AP-6: run afni_proc.py for full FMRI processing (Example 6)
 #       -> starts from Ex. 3, but adds ANATICOR and ventricle PC regressors
+#       -> also adds blur_to_fwhm
 
 # Process a single subj+ses pair.
 
@@ -138,6 +139,7 @@ cat << EOF >! ${run_script}
 # single echo FMRI
 # volumetric, voxelwise analysis, warped to standard space
 # use fanaticor with WMe and PC ventricles (both from FS)
+# use blur_to_fwhm, often used for multisite studies (equilibrize smoothness)
 # include physio regressors
 # include follower GM-ROIs from FS (both 2000 and 2009 parc)
 
