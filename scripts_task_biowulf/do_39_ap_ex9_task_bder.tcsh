@@ -14,10 +14,10 @@ module load afni
 
 # set N_threads for OpenMP
 setenv OMP_NUM_THREADS $SLURM_CPUS_ON_NODE
+# ---------------------------------------------------------------------------
 
 # initial exit code; we don't exit at fail, to copy partial results back
 set ecode = 0
-# ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
 # top level definitions (constant across demo)
