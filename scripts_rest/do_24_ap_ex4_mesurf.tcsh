@@ -149,10 +149,6 @@ afni_proc.py                                                                \
     -copy_anat                ${anat_cp}                                    \
     -anat_has_skull           no                                            \
     -anat_follower            anat_w_skull anat ${anat_skull}               \
-    -anat_follower_ROI        aaseg  anat ${roi_all_2009}                   \
-    -anat_follower_ROI        aeseg  epi  ${roi_all_2009}                   \
-    -anat_follower_ROI        FSvent epi  ${roi_FSvent}                     \
-    -anat_follower_erode      FSvent                                        \
     -blocks                   tshift align volreg mask combine surf blur    \
                               scale regress                                 \
     -radial_correlate_blocks  tcat volreg                                   \
@@ -172,7 +168,6 @@ afni_proc.py                                                                \
     -surf_spec                ${suma_specs}                                 \
     -blur_size                ${blur_size}                                  \
     -regress_motion_per_run                                                 \
-    -regress_make_corr_vols   aeseg FSvent                                  \
     -regress_censor_motion    ${cen_motion}                                 \
     -regress_censor_outliers  ${cen_outliers}                               \
     -regress_apply_mot_types  demean deriv                                  \
