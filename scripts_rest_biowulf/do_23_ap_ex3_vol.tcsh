@@ -2,6 +2,7 @@
 
 # AP-3: run afni_proc.py for full FMRI processing (Example 3)
 
+
 # Process a single subj+ses pair.
 
 # This is a Biowulf script.  Run it via swarm (see partner run*.tcsh).
@@ -13,10 +14,10 @@ module load afni
 
 # set N_threads for OpenMP
 setenv OMP_NUM_THREADS $SLURM_CPUS_ON_NODE
+# ---------------------------------------------------------------------------
 
 # initial exit code; we don't exit at fail, to copy partial results back
 set ecode = 0
-# ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
 # top level definitions (constant across demo)
@@ -150,7 +151,7 @@ afni_proc.py                                                               \
     -anat_has_skull              no                                        \
     -anat_follower               anat_w_skull anat ${anat_skull}           \
     -anat_follower_ROI           aagm09 anat ${roi_gmr_2009}               \
-    -anat_follower_ROI           aegm09 epi ${roi_gmr_2009}                \
+    -anat_follower_ROI           aegm09 epi  ${roi_gmr_2009}               \
     -ROI_import                  BrodPijn ${atl_brod}                      \
     -ROI_import                  SchYeo7N ${atl_sy7n}                      \
     -blocks                      ricor tshift align tlrc volreg mask blur  \

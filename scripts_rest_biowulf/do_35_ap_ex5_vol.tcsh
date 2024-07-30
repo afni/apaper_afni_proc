@@ -51,6 +51,8 @@ set sdir_ap        = ${dir_ap}/${subj}/${ses}
 # supplementary directories and info
 set dir_suppl      = ${dir_inroot}/supplements
 set template       = ${dir_suppl}/MNI152_2009_template_SSW.nii.gz
+set atl_brod       = ${dir_suppl}/Brodmann_pijn_afni.nii.gz
+set atl_sy7n       = ${dir_suppl}/Schaefer_7N_400.nii.gz
 
 # set output directory
 set sdir_out = ${sdir_ap}
@@ -139,45 +141,52 @@ cat << EOF >! ${run_script}
 # volumetric, voxelwise analysis, warped to standard space
 # include physio regressors
 # include follower GM-ROIs from FS 2009 parc
+# include ROI import for TSNR stats and warning checks
 
 # we do NOT include bandpassing here (see comments in text)
 
-afni_proc.py                                                                \
-    -subj_id                  ${subj}                                       \
-    -dsets                    ${dset_epi}                                   \
-    -copy_anat                ${anat_cp}                                    \
-    -anat_has_skull           no                                            \
-    -anat_follower            anat_w_skull anat ${anat_skull}               \
-    -anat_follower_ROI        aagm09 anat ${roi_gmr_2009}                   \
-    -anat_follower_ROI        aegm09 epi  ${roi_gmr_2009}                   \
-    -blocks                   ricor tshift align tlrc volreg mask blur      \
-                              scale regress                                 \
-    -radial_correlate_blocks  tcat volreg regress                           \
-    -tcat_remove_first_trs    ${nt_rm}                                      \
-    -ricor_regs               ${physio_regs}                                \
-    -ricor_regs_nfirst        ${nt_rm}                                      \
-    -ricor_regress_method     per-run                                       \
-    -align_unifize_epi        local                                         \
-    -align_opts_aea           -cost lpc+ZZ -giant_move -check_flip          \
-    -tlrc_base                ${template}                                   \
-    -tlrc_NL_warp                                                           \
-    -tlrc_NL_warped_dsets     ${dsets_NL_warp}                              \
-    -volreg_align_to          MIN_OUTLIER                                   \
-    -volreg_align_e2a                                                       \
-    -volreg_tlrc_warp                                                       \
-    -volreg_warp_dxyz         ${final_dxyz}                                 \
-    -volreg_compute_tsnr      yes                                           \
-    -mask_epi_anat            yes                                           \
-    -blur_size                ${blur_size}                                  \
-    -regress_motion_per_run                                                 \
-    -regress_make_corr_vols   aegm09                                        \
-    -regress_censor_motion    ${cen_motion}                                 \
-    -regress_censor_outliers  ${cen_outliers}                               \
-    -regress_apply_mot_types  demean deriv                                  \
-    -regress_bandpass         0.01 0.1                                      \
-    -regress_est_blur_epits                                                 \
-    -regress_est_blur_errts                                                 \
-    -html_review_style        pythonic
+afni_proc.py                                                               \
+    -subj_id                     ${subj}                                   \
+    -dsets                       ${dset_epi}                               \
+    -copy_anat                   ${anat_cp}                                \
+    -anat_has_skull              no                                        \
+    -anat_follower               anat_w_skull anat ${anat_skull}           \
+    -anat_follower_ROI           aagm09 anat ${roi_gmr_2009}               \
+    -anat_follower_ROI           aegm09 epi ${roi_gmr_2009}                \
+    -ROI_import                  BrodPijn ${atl_brod}                      \
+    -ROI_import                  SchYeo7N ${atl_sy7n}                      \
+    -blocks                      ricor tshift align tlrc volreg mask blur  \
+                                 scale regress                             \
+    -radial_correlate_blocks     tcat volreg regress                       \
+    -tcat_remove_first_trs       ${nt_rm}                                  \
+    -ricor_regs                  ${physio_regs}                            \
+    -ricor_regs_nfirst           ${nt_rm}                                  \
+    -ricor_regress_method        per-run                                   \
+    -align_unifize_epi           local                                     \
+    -align_opts_aea              -cost lpc+ZZ                              \
+                                 -giant_move                               \
+                                 -check_flip                               \
+    -tlrc_base                   ${template}                               \
+    -tlrc_NL_warp                                                          \
+    -tlrc_NL_warped_dsets        ${dsets_NL_warp}                          \
+    -volreg_align_to             MIN_OUTLIER                               \
+    -volreg_align_e2a                                                      \
+    -volreg_tlrc_warp                                                      \
+    -volreg_warp_dxyz            ${final_dxyz}                             \
+    -volreg_compute_tsnr         yes                                       \
+    -mask_epi_anat               yes                                       \
+    -blur_size                   ${blur_size}                              \
+    -regress_motion_per_run                                                \
+    -regress_make_corr_vols      aegm09                                    \
+    -regress_censor_motion       ${cen_motion}                             \
+    -regress_censor_outliers     ${cen_outliers}                           \
+    -regress_apply_mot_types     demean deriv                              \
+    -regress_bandpass            0.01 0.1                                  \
+    -regress_est_blur_epits                                                \
+    -regress_est_blur_errts                                                \
+    -regress_compute_tsnr_stats  BrodPijn 7 10 12 39 107 110 112 139       \
+    -regress_compute_tsnr_stats  SchYeo7N 161 149 7 364 367 207            \
+    -html_review_style           pythonic
 
 EOF
 
