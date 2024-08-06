@@ -22,16 +22,18 @@ set subj           = $1
 set dir_inroot     = ${PWD:h}                        # one dir above scripts/
 set dir_log        = ${dir_inroot}/logs
 set dir_basic      = ${dir_inroot}/data_00_basic
+set dir_timing     = ${dir_inroot}/data_03_timing
 set dir_fs         = ${dir_inroot}/data_12_fs
 set dir_ssw        = ${dir_inroot}/data_13_ssw
 
 # subject directories
-set sdir_basic     = ${dir_basic}/${subj} #/${ses}
+set sdir_basic     = ${dir_basic}/${subj}  #/${ses}
 set sdir_func      = ${sdir_basic}/func
 set sdir_anat      = ${sdir_basic}/anat
-set sdir_fs        = ${dir_fs}/${subj} #/${ses}
+set sdir_timing    = ${dir_timing}/${subj}  #/${ses}
+set sdir_fs        = ${dir_fs}/${subj}  #/${ses}
 set sdir_suma      = ${sdir_fs}/SUMA
-set sdir_ssw       = ${dir_ssw}/${subj} #/${ses}
+set sdir_ssw       = ${dir_ssw}/${subj}  #/${ses}
 
 # supplementary directories and info
 set dir_suppl      = ${dir_inroot}/supplements

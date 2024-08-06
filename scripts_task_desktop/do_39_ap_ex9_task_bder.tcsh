@@ -25,7 +25,8 @@ set ap_label       = 39_ap_ex9_task_bder
 set dir_inroot     = ${PWD:h}                        # one dir above scripts/
 set dir_log        = ${dir_inroot}/logs
 set dir_basic      = ${dir_inroot}/data_00_basic
-#set dir_fs         = ${dir_inroot}/data_12_fs
+set dir_timing     = ${dir_inroot}/data_03_timing
+set dir_fs         = ${dir_inroot}/data_12_fs
 set dir_ssw        = ${dir_inroot}/data_13_ssw
 set dir_ap         = ${dir_inroot}/data_${ap_label}
 
@@ -33,9 +34,9 @@ set dir_ap         = ${dir_inroot}/data_${ap_label}
 set sdir_basic     = ${dir_basic}/${subj}  #/${ses}
 set sdir_func      = ${sdir_basic}/func
 set sdir_anat      = ${sdir_basic}/anat
-set sdir_timing    = ${sdir_basic}/timing
-#set sdir_fs        = ${dir_fs}/${subj}  #/${ses}
-#set sdir_suma      = ${sdir_fs}/SUMA
+set sdir_timing    = ${dir_timing}/${subj}  #/${ses}
+set sdir_fs        = ${dir_fs}/${subj}  #/${ses}
+set sdir_suma      = ${sdir_fs}/SUMA
 set sdir_ssw       = ${dir_ssw}/${subj}  #/${ses}
 set sdir_ap        = ${dir_ap}/${subj}  #/${ses}
 
