@@ -67,7 +67,7 @@ curl -O https://afni.nimh.nih.gov/pub/dist/tgz/demo_apaper_afni_proc_task.tgz
 tar -xf demo_apaper_afni_proc_task.tgz
 ```
 
-The raw data tree for Ex. 2 is located in data_00_basic/, 
+The raw data tree is located in data_00_basic/, 
 with the following BIDS file structure (though afni_proc.py 
 does not require any particular file structure to run processing):
 ```
@@ -86,4 +86,16 @@ data_00_basic/
 ```
 
 
+### Data description: rest FMRI (Ex. 1, 3, 4 and supplements)
+
+The accompanying data can be downloaded+unpacked via:
+```
+curl -O https://afni.nimh.nih.gov/pub/dist/tgz/demo_apaper_afni_proc_rest.tgz
+tar -xf demo_apaper_afni_proc_rest.tgz
+```
+
+The raw data tree is located in data_00_basic/, \*\*\*
+```
+# to be added
+```
 
