@@ -15,7 +15,7 @@ and one for task-based FMRI.
 
 ### General note on scripts
 
-In each demo download, a pair of scripts directories is provided:
+In each demo download, a pair of script directories is provided:
 * `scripts_*_biowulf` : scripts set up for batch processing on a high
   performance cluster that uses Slurm as its workload manager (specifically,
   `swarm` to submit multiple jobs simultaneously), which is called Biowulf
@@ -23,6 +23,40 @@ In each demo download, a pair of scripts directories is provided:
 * `scripts_*_desktop` : scripts set up for batch processing on a standard
   desktop running Linux or macOS.
 
+In each download, only one subject's data is provided, but 
+the scripts are setup to process a group of subjects with unprocessed 
+data organized in the same way. That means there is more "scripty" stuff
+to read, rather than just FMRI processing commands, but we hope it is 
+useful.
+
+In each case, scripts are organized to run in the following way, partitioning
+the "what needs to be done per subject" from the "managing the looping over
+a group of subjects". Therefore, each stage of processing is controlled by
+a pair of scripts, the `do_*.tcsh` and `run_*.tcsh` script, respectively:
+* `do_*.tcsh` : do one stage of processing (like nonlinear alignment,
+  running FreeSurfer, running afni_proc.py, etc.) on one dataset, whose
+  subject ID (and possibly session ID) are input at runtime.
+* `run_*.tcsh` : manage having one or more datasets to process, such as
+  by looping over all subject (and possibly session) IDs in a directory, and
+  either setup a swarm script to run on an HPC or start processing in series
+  on a desktop
+The user primarily executes the "run" script, which itself calls the associated
+"do" script one or more times. Each "do-run" pair produces one new data directory
+containing a directory per subject of the output results of that processing
+stage.
+
+The script names contain a 2-digit number near the beginning, so that a simple `ls` 
+in the directory lists them in the approximate order of expected execution. That is, 
+`run_03*.tcsh` comes before `run_22*.tcsh`. There are gaps in the numbering, 
+to leave room for other stages to be inserted when adapting them. Also, sometimes
+the numbering just separates stages that would be run in parallel; for example,
+each afni_proc.py example is independent, and these are simply each of the
+`run_2*.tcsh` and `run_3*.tcsh` scripts here.
+
+There is a simple string label associated with each number, that remains constant
+for both the `do_*.tcsh` and `run_*.tcsh` scripts, as well as the output data
+directory.  Thus, `do_03_timing.tcsh` is paired with `run_03_timing.tcsh`, which 
+produces `data_03_timing` as the output data tree.
 
 
 ### Data description: task FMRI (Ex. 2, and supplements)
