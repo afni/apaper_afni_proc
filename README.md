@@ -143,9 +143,20 @@ tar -xf demo_apaper_afni_proc_rest.tgz
 
 The raw data tree is located in data_00_basic/, \*\*\*
 ```
-# to be added
+data_00_basic/
+`-- sub-005
+    `-- ses-01
+        |-- anat
+        |   `-- sub-005_ses-01_mprage_run-1_T1w.nii.gz
+        `-- func
+            |-- sub-005_ses-01_acq-blip_dir-match_run-1_bold.nii.gz
+            |-- sub-005_ses-01_acq-blip_dir-opp_run-1_bold.nii.gz
+            |-- sub-005_ses-01_task-rest_run-1_echo-1_bold.nii.gz
+            |-- sub-005_ses-01_task-rest_run-1_echo-2_bold.nii.gz
+            |-- sub-005_ses-01_task-rest_run-1_echo-3_bold.nii.gz
+            |-- sub-005_ses-01_task-rest_run-1_physio-ECG.txt
+            `-- sub-005_ses-01_task-rest_run-1_physio-Resp.txt
 ```
-
 
 ##### Scripts already run
 
