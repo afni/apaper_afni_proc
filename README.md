@@ -15,6 +15,7 @@ and one for task-based FMRI.
 
 ### General note on scripts
 
+**Desktop and HPC scripts:**
 In each demo download, a pair of script directories is provided:
 * `scripts_*_biowulf` : scripts set up for batch processing on a high
   performance cluster that uses Slurm as its workload manager (specifically,
@@ -29,6 +30,7 @@ data organized in the same way. That means there is more "scripty" stuff
 to read, rather than just FMRI processing commands, but we hope it is 
 useful.
 
+**Running scripts:**
 In each case, scripts are organized to run in the following way, partitioning
 the "what needs to be done per subject" from the "managing the looping over
 a group of subjects". Therefore, each stage of processing is controlled by
@@ -45,6 +47,7 @@ The user primarily executes the "run" script, which itself calls the associated
 containing a directory per subject of the output results of that processing
 stage.
 
+**Script and data tree naming:**
 The script names contain a 2-digit number near the beginning, so that a simple `ls` 
 in the directory lists them in the approximate order of expected execution. That is, 
 `run_03*.tcsh` comes before `run_22*.tcsh`. There are gaps in the numbering, 
@@ -61,13 +64,15 @@ produces `data_03_timing` as the output data tree.
 
 ### Data description: task FMRI (Ex. 2, and supplements)
 
+**Download:**
 The accompanying data can be downloaded+unpacked via:
 ```
 curl -O https://afni.nimh.nih.gov/pub/dist/tgz/demo_apaper_afni_proc_task.tgz
 tar -xf demo_apaper_afni_proc_task.tgz
 ```
 
-The raw data tree is located in data_00_basic/, 
+**Raw data contents:**
+The raw/unprocessed data tree is located in data_00_basic/, 
 with the following BIDS file structure (though afni_proc.py 
 does not require any particular file structure to run processing):
 ```
@@ -84,6 +89,33 @@ data_00_basic/
         |-- sub-10506_task-pamenc_bold.nii.gz
         `-- sub-10506_task-pamenc_events.tsv
 ```
+
+**Scripts already run:**
+The following processing script pairs exist in the `scripts*/` directory, and
+have already been run so their data directories exist in the distributed demo:
+* `*03_timing*` : run `timing_tool.py` to generate timing files from the
+  stimulus events TSV
+* `*12_fs*` : run FreeSurfer's `recon-all` and AFNI's `@SUMA_Make_Spec_FS`
+  on the raw anatomical dataset, to estimate surface meshes and then create
+  standardized mesh versions; also creates anatomical parcellations.
+* `*13_ssw*` : run `sswarper2` on the raw anatomical dataset, to skullstrip
+  (ss) it and to estimate nonlinear alignment (warping) to standard space.
+NB: a subset of output datasets (trimmed to what is useful for further steps)
+might be distributed in some cases, to reduce the download size of the demo. 
+
+**Scripts to be run:**
+The following processing script pairs exist in the `scripts*/` directory, for
+the user to run:
+* `*20_ap_simple*` : run a "simple" `afni_proc.py` command on the raw data,
+  that requires essentially no options and does only affine alignment to
+  template space for quicker processing, but generates a very useful set of
+  outputs and QC HTML for investigating the data quicky.
+* `*22_ap_ex2_task*` : run the Ex. 2 `afni_proc.py` command for task-based
+  FMRI processing. This includes using nonlinear alignment, stimulus timing,
+  and more.
+* `*39_ap_ex9_task_bder*` : run the Ex. 9 `afni_proc.py` command for task-based
+  processing, which is included in the draft supplements. This is a variation
+  of Ex. 2 that includes an output directory in BIDS-Derivative format.
 
 
 ### Data description: rest FMRI (Ex. 1, 3, 4 and supplements)
