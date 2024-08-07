@@ -41,7 +41,8 @@ a pair of scripts, the `do_*.tcsh` and `run_*.tcsh` script, respectively:
 * `run_*.tcsh` : manage having one or more datasets to process, such as
   by looping over all subject (and possibly session) IDs in a directory, and
   either setup a swarm script to run on an HPC or start processing in series
-  on a desktop
+  on a desktop.
+   
 The user primarily executes the "run" script, which itself calls the associated
 "do" script one or more times. Each "do-run" pair produces one new data directory
 containing a directory per subject of the output results of that processing
@@ -100,6 +101,7 @@ have already been run so their data directories exist in the distributed demo:
   standardized mesh versions; also creates anatomical parcellations.
 * `*13_ssw*` : run `sswarper2` on the raw anatomical dataset, to skullstrip
   (ss) it and to estimate nonlinear alignment (warping) to standard space.
+  
 NB: a subset of output datasets (trimmed to what is useful for further steps)
 might be distributed in some cases, to reduce the download size of the demo. 
 
