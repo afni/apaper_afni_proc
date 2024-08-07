@@ -73,7 +73,7 @@ echo "++ INFO: Using ${nthr_using} of available ${nthr_avail} threads"
 cd ${sdir_out}
 
 # create command script
-set run_script = run_retrots.txt
+set run_script = run_physio_calc
 
 cat << EOF >! ${run_script}
 
