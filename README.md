@@ -62,7 +62,7 @@ directory.  Thus, `do_03_timing.tcsh` is paired with `run_03_timing.tcsh`, which
 produces `data_03_timing` as the output data tree.
 
 
-### Data description: task FMRI (Ex. 2, and supplements)
+### Task FMRI demo (Ex. 2, and supplements)
 
 **Download:**
 The accompanying data can be downloaded+unpacked via:
@@ -123,7 +123,7 @@ the user to run:
   a given output across all subjects and create a compressed tarball, which can be
   more easily moved around.
 
-### Data description: rest FMRI (Ex. 1, 3, 4 and supplements)
+### Rest FMRI Demo (Ex. 1, 3, 4 and supplements)
 
 The accompanying data can be downloaded+unpacked via:
 ```
