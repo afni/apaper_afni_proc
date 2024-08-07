@@ -88,7 +88,7 @@ swarm                                                              \
     --partition=norm,quick                                         \
     --threads-per-process=1                                        \
     --gb-per-process=4                                             \
-    --time=03:59:00                                                \
+    --time=00:05:00                                                \
   # --gres=lscratch:3                                              \
     --logdir=${cdir_log}                                           \
     --job-name=job_${cmd}                                          \
