@@ -117,6 +117,11 @@ the user to run:
   processing, which is included in the draft supplements. This is a variation
   of Ex. 2 that includes an output directory in BIDS-Derivative format.
 
+**Supplementary scripts:**
+* `pack*.tcsh*` : several of the above scripts run programs that create QC output;
+  these scripts pack up things like the QC images or QC HTML directories from
+  a given output across all subjects and create a compressed tarball, which can be
+  more easily moved around.
 
 ### Data description: rest FMRI (Ex. 1, 3, 4 and supplements)
 
