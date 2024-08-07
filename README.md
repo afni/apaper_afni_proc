@@ -109,7 +109,7 @@ the user to run:
 * `*20_ap_simple*` : run a "simple" `afni_proc.py` command on the raw data,
   that requires essentially no options and does only affine alignment to
   template space for quicker processing, but generates a very useful set of
-  outputs and QC HTML for investigating the data quicky.
+  outputs and QC HTML for investigating the data quickly.
 * `*22_ap_ex2_task*` : run the Ex. 2 `afni_proc.py` command for task-based
   FMRI processing. This includes using nonlinear alignment, stimulus timing,
   and more.
