@@ -13,7 +13,7 @@ downloadable demos provided: one for resting state FMRI (acquired with multiple
 echos, and including processing for both single- and multi-echo FMRI) 
 and one for task-based FMRI.
 
-### General note on the demo scripts: how to use
+### How to use the scripts (general organization and guidance)
 
 **Desktop and HPC scripts:**
 In each demo download, a pair of script directories is provided:
