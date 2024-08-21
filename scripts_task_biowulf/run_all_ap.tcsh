@@ -1,7 +1,7 @@
 #!/bin/tcsh
 
 
-set all_script = ( run_2*.tcsh run_3*.tcsh )
+set all_script = ( run_2*.tcsh run_3*.tcsh run_4*.tcsh )
 set nscript    = ${#all_script}
 
 echo "++ Found ${nscript} to run:"
