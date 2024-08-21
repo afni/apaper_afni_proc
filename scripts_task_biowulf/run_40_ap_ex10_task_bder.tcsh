@@ -1,8 +1,8 @@
 #!/bin/tcsh
 
-# AP-9: run afni_proc.py for full FMRI processing (Example 9)
+# AP-10: run afni_proc.py for full FMRI processing (Example 10)
 # -> variation of Ex. 2, adding in BIDS-Deriv output
-#  -> the Biowulf version
+# -> the Biowulf version
 
 # This script runs a corresponding do_*.tcsh script, for a given
 # subj. It also loops over many subjects.
@@ -13,7 +13,7 @@
 # --------------------------------------------------------------------------
 
 # specify script to execute
-set cmd           = 39_ap_ex9_task_bder
+set cmd           = 40_ap_ex10_task_bder
 
 # upper directories
 set dir_scr       = $PWD
