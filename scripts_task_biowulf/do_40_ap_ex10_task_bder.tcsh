@@ -126,6 +126,8 @@ cat << EOF >! ${run_script}
 # + add extra output directory for BIDS-Deriv-style naming/structure
 # + add in '-uvar ..' to provide extra user-variable info for BIDS-Deriv
 #   naming (could also add session-label info, if present)
+#   - if this dataset had a session ID, like ses-01, then one would likely 
+#     also add that as another uvar, via `-uvar ses ses-01`.
 
 # NL alignment
 

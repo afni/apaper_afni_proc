@@ -1,6 +1,6 @@
 #!/bin/tcsh
 
-# AP-9: run afni_proc.py for full FMRI processing (Example 9)
+# AP-10: run afni_proc.py for full FMRI processing (Example 10)
 # -> variation of Ex. 2, adding in BIDS-Deriv output
 
 # Process a single subj pair.
@@ -18,7 +18,7 @@ set ecode = 0
 # labels
 set subj           = $1
 #set ses            = $2
-set ap_label       = 39_ap_ex9_task_bder
+set ap_label       = 40_ap_ex10_task_bder
 
 
 # upper directories
@@ -104,6 +104,8 @@ cat << EOF >! ${run_script}
 # + add extra output directory for BIDS-Deriv-style naming/structure
 # + add in '-uvar ..' to provide extra user-variable info for BIDS-Deriv
 #   naming (could also add session-label info, if present)
+#   - if this dataset had a session ID, like ses-01, then one would likely 
+#     also add that as another uvar, via `-uvar ses ses-01`.
 
 # NL alignment
 
