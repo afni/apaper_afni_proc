@@ -122,7 +122,7 @@ the user to run:
 * `*22_ap_ex2_task*` : run the Ex. 2 `afni_proc.py` command for task-based
   FMRI processing. This includes using nonlinear alignment, stimulus timing,
   and more.
-* `*39_ap_ex9_task_bder*` : run the (supplementary) Ex. 9 `afni_proc.py`
+* `*40_ap_ex10_task_bder*` : run the (supplementary) Ex. 10 `afni_proc.py`
   command for task-based processing. This is a variation of Ex. 2 that
   includes an output directory in BIDS-Derivative format.
 
@@ -203,6 +203,8 @@ the user to run:
   primarily, this means not including blurring.
 * `*38_ap_ex8_mesurf*` : run (supplementar) Ex. 8's `afni_proc.py` command,
   which is a variation of Ex. 4 that uses OC to combine ME-FMRI echos.
+* `*39_ap_ex9_mevol*` : run (supplementar) Ex. 9's `afni_proc.py` command,
+  which is a variation of Ex. 3 that processes ME-FMRI in the volume.
 
 ##### Supplementary scripts
 
