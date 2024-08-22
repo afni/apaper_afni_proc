@@ -2,9 +2,12 @@
 
 # AP-9: run afni_proc.py for full volumetric ME processing (Example 9)
 #
-#    This is basically half way between examples 3 and 4.
-#    -> vs. 3, add ME (combine OC), blip; remove gm09 followers, ricor; blur 4
-#    -> vs. 4, add ROI imports, NL tlrc, tsnr stats; remove surf, wsinc; use OC
+#    This is akin to example 3, but processing multiple echoes (so leaning
+#    toward example 4).  Comparing with example 3:
+#    -> add multi-echo data, use AFNI's OC combine method, apply phase-encoded
+#       distortion correction
+#    -> remove gm09 followers and ricor for simplicity
+#    -> change blur_size to 4mm, since it is less needed for ME data
 
 # Process a single subj+ses pair.
 
