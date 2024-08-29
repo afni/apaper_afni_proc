@@ -164,6 +164,7 @@ afni_proc.py                                                               \
     -volreg_compute_tsnr         yes                                       \
     -mask_epi_anat               yes                                       \
     -blur_size                   ${blur_size}                              \
+    -blur_to_fwhm                                                          \
     -regress_motion_per_run                                                \
     -regress_ROI_PC              FSvent 3                                  \
     -regress_ROI_PC_per_run      FSvent                                    \
