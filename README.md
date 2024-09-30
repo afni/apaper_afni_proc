@@ -65,6 +65,21 @@ for both the `do_*.tcsh` and `run_*.tcsh` scripts, as well as the output data
 directory.  Thus, `do_03_timing.tcsh` is paired with `run_03_timing.tcsh`, which 
 produces `data_03_timing` as the output data tree.
 
+##### Example commands without variables
+
+To simplify reading some of the afni_proc.py commands themselves, we
+provide a set of variable-free versions in `example_ap_cmds/`.  Note
+that these are also stored within afni_proc.py itself with name keys,
+and you can show these directly in the terminal with:
+
+    afni_proc.py -show_examples 'AP publish 3a'
+    afni_proc.py -show_examples 'AP publish 3b'
+    afni_proc.py -show_examples 'AP publish 3c'
+    ...
+
+etc. (see `afni_proc.py -show_example_names` for the complete list of
+these and others). These name abbreviations can also be used with the
+several helpful `-compare_* ..` options in AP.
 
 ### Task FMRI demo (Ex. 2, and supplements)
 

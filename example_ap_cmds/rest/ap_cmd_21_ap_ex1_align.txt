@@ -1,0 +1,51 @@
+# AP, Example 1: alignment-only 
+#
+# single echo FMRI with: blip up/down correction, motion correction,
+# affine EPI-anatomical alignment, and nonlinear anatomical-template
+# alignment
+
+
+# This example's name in afni_proc.py is:  'AP publish 3a'.
+# To show it in the terminal, run:
+# 
+#     afni_proc.py -show_example 'AP publish 3a'
+#
+# The name can also be used with the various '-compare_* ..' options in 
+# afni_proc.py.
+
+
+# Path examples (from Reynolds et al. 2024 processing)
+# ----------------------------------------------------
+# FUNC = study_dir/data_00_basic/sub-005/ses-01/func
+# SSW  = study_dir/data_13_ssw/sub-005/ses-01
+#
+# NB: As demonstrated here, the template dataset (here: MNI*.nii.gz)
+# does *not* need path info if it lives in the AFNI binary directory,
+# or if its parent directory is provided using the AFNI_ATLAS_PATH
+# environment variable (e.g., within ~/.afnirc or a script).
+
+# ============================================================================
+
+afni_proc.py                                                                 \
+    -subj_id                sub-005                                          \
+    -dsets                  FUNC/sub-005_ses-01_task-rest_run-1_echo-2_bold.nii.gz \
+    -copy_anat              SSW/sub-005/ses-01/anatSS.sub-005.nii            \
+    -anat_has_skull         no                                               \
+    -anat_follower          anat_w_skull anat SSW/anatU.sub-005.nii          \
+    -blocks                 align tlrc volreg regress                        \
+    -tcat_remove_first_trs  4                                                \
+    -blip_forward_dset      "FUNC/sub-005_ses-01_acq-blip_dir-match_run-1_bold.nii.gz[0]" \
+    -blip_reverse_dset      "FUNC/sub-005_ses-01_acq-blip_dir-opp_run-1_bold.nii.gz[0]" \
+    -align_unifize_epi      local                                            \
+    -align_opts_aea         -cost lpc+ZZ                                     \
+                            -giant_move                                      \
+                            -check_flip                                      \
+    -tlrc_base              MNI152_2009_template_SSW.nii.gz                  \
+    -tlrc_NL_warp                                                            \
+    -tlrc_NL_warped_dsets   SSW/anatQQ.sub-005.nii                           \
+                            SSW/anatQQ.sub-005.aff12.1D                      \
+                            SSW/anatQQ.sub-005_WARP.nii                      \
+    -volreg_align_to        MIN_OUTLIER                                      \
+    -volreg_align_e2a                                                        \
+    -volreg_tlrc_warp                                                        \
+    -volreg_warp_dxyz       3
