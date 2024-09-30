@@ -1,0 +1,79 @@
+# AP, example 2: task FMRI
+# 
+# task-pamenc_bold.json shows slice timing of alt+z2 (missing
+# from nii.gz) 
+# blur in mask, and use higher 6 mm FWHM (voxels are 3x3x4)
+# NL alignment
+
+
+# This example's name in afni_proc.py is:  'AP publish 3b'.
+# To show it in the terminal, run:
+# 
+#     afni_proc.py -show_example 'AP publish 3b'
+#
+# The name can also be used with the various '-compare_* ..' options in 
+# afni_proc.py.
+
+
+# Path examples (from Reynolds et al. 2024 processing)
+# ----------------------------------------------------
+# FUNC = study_dir/data_00_basic/sub-10506/func
+# SSW  = study_dir/data_13_ssw/sub-10506
+# TIME = study_dir/data_03_timing/sub-10506
+#
+# NB: As demonstrated here, the template dataset (here: MNI*.nii.gz)
+# does *not* need path info if it lives in the AFNI binary directory,
+# or if its parent directory is provided using the AFNI_ATLAS_PATH
+# environment variable (e.g., within ~/.afnirc or a script).
+
+# ============================================================================
+
+afni_proc.py                                                                 \
+    -subj_id                  sub-10506                                      \
+    -dsets                    FUNC/sub-10506_task-pamenc_bold.nii.gz         \
+    -copy_anat                SSW/sub-10506/anatSS.sub-10506.nii             \
+    -anat_has_skull           no                                             \
+    -anat_follower            anat_w_skull anat                              \
+                              SSW/sub-10506/anatU.sub-10506.nii              \
+    -blocks                   tshift align tlrc volreg mask blur scale       \
+                              regress                                        \
+    -radial_correlate_blocks  tcat volreg regress                            \
+    -tcat_remove_first_trs    0                                              \
+    -tshift_opts_ts           -tpattern alt+z2                               \
+    -align_unifize_epi        local                                          \
+    -align_opts_aea           -giant_move -cost lpc+ZZ                       \
+                              -check_flip                                    \
+    -tlrc_base                MNI152_2009_template_SSW.nii.gz                \
+    -tlrc_NL_warp                                                            \
+    -tlrc_NL_warped_dsets     SSW/sub-10506/anatQQ.sub-10506.nii             \
+                              SSW/sub-10506/anatQQ.sub-10506.aff12.1D        \
+                              SSW/sub-10506/anatQQ.sub-10506_WARP.nii        \
+    -volreg_align_to          MIN_OUTLIER                                    \
+    -volreg_align_e2a                                                        \
+    -volreg_tlrc_warp                                                        \
+    -volreg_warp_dxyz         3.0                                            \
+    -volreg_compute_tsnr      yes                                            \
+    -mask_epi_anat            yes                                            \
+    -blur_size                6                                              \
+    -blur_in_mask             yes                                            \
+    -regress_stim_times       TIME/sub-10506/times.CONTROL.txt               \
+                              TIME/times.TASK.txt                            \
+    -regress_stim_labels      CONTROL TASK                                   \
+    -regress_stim_types       AM1                                            \
+    -regress_basis_multi      'dmUBLOCK(-1)'                                 \
+    -regress_motion_per_run                                                  \
+    -regress_censor_motion    0.3                                            \
+    -regress_censor_outliers  0.05                                           \
+    -regress_compute_fitts                                                   \
+    -regress_fout             no                                             \
+    -regress_opts_3dD         -jobs 8                                        \
+                              -gltsym 'SYM: TASK -CONTROL'                   \
+                              -glt_label 1 T-C                               \
+                              -gltsym 'SYM: 0.5*TASK +0.5*CONTROL'           \
+                              -glt_label 2 meanTC                            \
+    -regress_3dD_stop                                                        \
+    -regress_reml_exec                                                       \
+    -regress_make_ideal_sum   sum_ideal.1D                                   \
+    -regress_est_blur_errts                                                  \
+    -regress_run_clustsim     no                                             \
+    -html_review_style        pythonic

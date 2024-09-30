@@ -1,0 +1,36 @@
+# AP, run simple
+#
+# single echo FMRI, simple processing for initial QC
+# anatomical has skull on
+
+
+# The program below is a wrapper for afni_proc.py. It will save the AP
+# command it creates to a file, so you can read it. The command it
+# creates also has an example name within afni_proc.py:  'AP demo 1a'.
+# To show it in the terminal, run:
+# 
+#     afni_proc.py -show_example 'AP demo 1a'
+#
+# The name can also be used with the various '-compare_* ..' options in 
+# afni_proc.py.
+
+
+# Path examples (from Reynolds et al. 2024 processing)
+# ----------------------------------------------------
+# ANAT = study_dir/data_00_basic/sub-10506/anat
+# FUNC = study_dir/data_00_basic/sub-10506/func
+#
+# NB: As demonstrated here, the template dataset (here: MNI*.nii.gz)
+# does *not* need path info if it lives in the AFNI binary directory,
+# or if its parent directory is provided using the AFNI_ATLAS_PATH
+# environment variable (e.g., within ~/.afnirc or a script).
+
+# ============================================================================
+
+ap_run_simple_rest.tcsh                                                      \
+    -run_ap                                                                  \
+    -subjid    sub-10506                                                     \
+    -nt_rm     0                                                             \
+    -anat      ANAT/sub-10506_T1w.nii.gz                                     \
+    -epi       FUNC/sub-10506_task-pamenc_bold.nii.gz                        \
+    -template  MNI152_2009_template_SSW.nii.gz
