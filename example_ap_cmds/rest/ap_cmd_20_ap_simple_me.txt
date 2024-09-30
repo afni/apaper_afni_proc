@@ -9,7 +9,7 @@
 # creates also has an example name within afni_proc.py:  'AP demo 1c'.
 # To show it in the terminal, run:
 # 
-#     afni_proc.py -show_example 'AP demo 1a'
+#     afni_proc.py -show_example 'AP demo 1c'
 #
 # The name can also be used with the various '-compare_* ..' options in 
 # afni_proc.py.
