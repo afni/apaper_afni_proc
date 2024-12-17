@@ -2,9 +2,8 @@
 Scripts to accompany FMRI processing examples using AFNI's afni_proc.py, 
 for the accompanying paper:
 +   Reynolds RC, Glen DR, Chen G, Saad ZS, Cox RW, Taylor PA (2024). 
-    Processing, evaluating and understanding FMRI data with afni_proc.py.  
-    arXiv:2406.05248 [q-bio.NC]
-    https://arxiv.org/abs/2406.05248
+    [Processing, evaluating and understanding FMRI data with afni_proc.py.](https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00347/124890/Processing-evaluating-and-understanding-FMRI-data)
+    Imaging Neuroscience 2: 1–52.
 
 Full sets of the data and processing scripts (which themselves are copies
 of script directories in the present git repository, from the time of 
